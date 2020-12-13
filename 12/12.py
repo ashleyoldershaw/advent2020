@@ -20,7 +20,6 @@ def calculate_manhattan_distance_pt_1(instructions, initial_direction):
         else:
             distance_travelled[instruction["direction"]] += instruction["distance"]
 
-    print(distance_travelled)
     return abs(distance_travelled["N"] - distance_travelled["S"]) + \
            abs(distance_travelled["E"] - distance_travelled["W"])
 
@@ -56,8 +55,6 @@ def calculate_manhattan_distance_pt_2(instructions, waypoint_location):
 if __name__ == '__main__':
     with open("directions.txt", "r") as f:
         directions = [{"direction": x[0], "distance": int(x[1:])} for x in f.read().splitlines()]
-
-    print(directions)
 
     manhattan_distance = calculate_manhattan_distance_pt_1(deepcopy(directions), "E")
     print(f"Manhattan distance for pt 1 is {manhattan_distance}")
