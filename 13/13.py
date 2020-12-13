@@ -1,8 +1,3 @@
-import math
-
-import numpy as np
-
-
 def part_1(timetable_lines):
     current_timestamp = int(timetable_lines[0])
     timetable = [int(x) for x in timetable_lines[1].split(",") if x != "x"]
@@ -28,11 +23,11 @@ def part_2(timetable_lines):
     check_timestamp = max_number - max_number_position
 
     while True:
-        match = True
-        for position in timetable:
-            if ((check_timestamp + position) % timetable[position]) != 0:
-                match = False
-                break
+        match = all(
+            (check_timestamp + position) % value == 0
+            for position, value in timetable.items()
+        )
+
         if match:
             return check_timestamp
         else:
@@ -45,7 +40,7 @@ def solution_robinhouston(timetable_lines):
     # this is tricky because you can't really brute force it for the main event
     # I spent way too long trying to implement the chinese remainder theorem, see below
     # https://brilliant.org/wiki/chinese-remainder-theorem/#theorem-and-proof
-    # in the end I looked on Reddit and found this incredible solution by u/robinhouston who did both parts in  in 150
+    # in the end I looked on Reddit and found this incredible solution by u/robinhouston who did both parts in 150
     # characters which is incredible, I figured if I couldn't work it out myself in a reasonable time I'd showcase a
     # great solution on here
 
